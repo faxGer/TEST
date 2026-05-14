@@ -1,38 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaxGer Global Logistics</title>
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        #content-frame { width: 100%; height: 100vh; border: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- Primary Meta Tags (SEO) -->
+  <title>FaxGer Global Logistics | International Shipping Solutions</title>
+  <meta name="title" content="FaxGer Global Logistics | International Shipping Solutions">
+  <meta name="description" content="Calculate international shipping rates, track parcels, and manage logistics with FaxGer. Reliable solutions for global shipping.">
+  <meta name="keywords" content="FaxGer, Shipping Quotes, International Courier, Logistics Bangladesh, Courier Tracking, DHL Rates, FedEx Rates, ups rates, Shipping Rates, Best courier service in Bangladesh, Fastest courier service in BD, Low cost courier service, Courier service Dhaka, Next day delivery service, International courier service in Bangladesh, Send parcel from Bangladesh to USA/UK/Canada, DHL/FedEx/Aramex rates in Bangladesh, Cheap international shipping from BD, Weight-based courier rates in Bangladesh, Courier service for heavy items BD, Courier service in Uttara, Courier service near me, international Courier service near me,Cheap international courier service Dhaka, Courier service from Bangladesh to USA, DHL price list Bangladesh, Best international shipping service BD, Courier to UK from Bangladesh, International document delivery service, Shipping cost to Canada from BD, Express delivery international Bangladesh,Aramex Bangladesh price list, E-commerce international shipping BD, International courier near me, Cheapest way to send parcel to Europe,International courier service contact number, Reliable international courier for electronics,Fastest courier for documents to Europe, Cheapest shipping from China to Bangladesh, International parcel delivery rates chart,Courier service for medicine from BD to USA, UPS Bangladesh service center, International parcel tracking BD,Express shipping to Australia from Bangladesh, Door to door courier service for India,Gift delivery to UK from Bangladesh,Export courier service in Bangladesh, International courier discount offers, Online booking for international courier">
+  <meta name="author" content="FaxGer IT Farm">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook / WhatsApp / Instagram -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rate.faxger.com/">
+  <meta property="og:title" content="FaxGer Global Logistics - Advanced Shipping Portal">
+  <meta property="og:description" content="Get instant shipping quotes and compare rates from top global carriers with FaxGer.">
+  <meta property="og:image" content="https://drive.google.com/thumbnail?id=1YixXpA8V8ruHiqjv1dzn3lqx0REBTHwS&sz=w1200">
+  <meta property="og:site_name" content="FaxGer">
+
+  <!-- X / Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rate.faxger.com/">
+  <meta property="twitter:title" content="FaxGer Global Logistics - Advanced Shipping Portal">
+  <meta property="twitter:description" content="Get instant shipping quotes and compare rates from top global carriers with FaxGer.">
+  <meta property="twitter:image" content="https://drive.google.com/thumbnail?id=1YixXpA8V8ruHiqjv1dzn3lqx0REBTHwS&sz=w1200">
+
+  <link rel="icon" href="https://lh3.googleusercontent.com/d/13QoaBni9mY0tTYPkCodu4KSqe0syFkrZ" type="image/png">
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/13QoaBni9mY0tTYPkCodu4KSqe0syFkrZ">
+
+  <style>
+    :root {
+      --primary: #ff007f;
+      --accent: #001d47;
+      --bg: #000c1d;
+      --text: #ffffff;
+      --loader-bg: #000c1d;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body, html {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      height: 100dvh; overflow: hidden;
+      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .app-wrapper {
+      position: relative;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+    }
+
+    #main-app {
+      flex: 1; width: 100%; height: 100%;
+      border: none; opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    #main-app.loaded { opacity: 1; }
+
+    .loader-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      background: var(--loader-bg);
+      z-index: 100; transition: var(--transition);
+    }
+
+    .spinner-box { position: relative; width: 65px; height: 65px; }
+
+    .spinner {
+      width: 100%; height: 100%;
+      border: 3px solid rgba(255, 0, 127, 0.1);
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+    }
+
+    .loading-status {
+      margin-top: 25px; font-size: 0.85rem;
+      font-weight: 700; color: var(--primary);
+      letter-spacing: 2px; text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+    }
+
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    .hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .loader-overlay::before {
+      content: ''; position: absolute;
+      width: 300px; height: 300px;
+      background: var(--primary);
+      filter: blur(100px); opacity: 0.15;
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.2; transform: scale(1.3); } }
+  </style>
 </head>
 <body>
 
-    <!-- এই আইফ্রেমটি আপনার ডোমেইনের ভেতরে গুগল স্ক্রিপ্টকে মাস্ক করে রাখবে -->
-    <iframe id="content-frame" src="" allow="geolocation; camera; clipboard-write"></iframe>
+  <div class="app-wrapper">
+    <div class="loader-overlay" id="loader">
+      <div class="spinner-box">
+        <div class="spinner"></div>
+      </div>
+      <div class="loading-status" id="status-text">FaxGer Initializing...</div>
+    </div>
 
-    <script>
-        (function() {
-            // ১. গুগল স্ক্রিপ্টের বেস লিঙ্ক
-            const baseScript = "https://script.google.com/macros/s/AKfycbzZ_E7D2_v3mppOkeSG-btdCI4SDs32FvRAFGLq-qh1ost2Ort1h_yeAHk_s2v3M0PstA/exec";
-            
-            // ২. বর্তমান ইউআরএল থেকে প্যারামিটার (p=track ইত্যাদি) নেওয়া
-            const urlParams = new URLSearchParams(window.location.search);
-            const p = urlParams.get('p');
+    <iframe
+      id="main-app"
+      src="about:blank"
+      title="FaxGer Global Logistics Dashboard"
+      allow="geolocation; camera; clipboard-write"
+      loading="eager">
+    </iframe>
+  </div>
 
-            // ৩. আইফ্রেমের সোর্স সেট করা
-            const finalUrl = p ? baseScript + "?p=" + p : baseScript;
-            document.getElementById('content-frame').src = finalUrl;
+  <script>
+    const iframe = document.getElementById('main-app');
+    const loader = document.getElementById('loader');
+    const statusText = document.getElementById('status-text');
 
-            // ৪. ব্রাউজারের হিস্ট্রি ম্যানেজ করা (যাতে লিঙ্ক পরিবর্তন না হয়)
-            if (p) {
-                const newRelativePathQuery = window.location.pathname + '?p=' + p;
-                window.history.replaceState(null, '', newRelativePathQuery);
-            }
-        })();
-    </script>
+    // ১. আপনার মূল অ্যাপ স্ক্রিপ্ট লিঙ্ক (প্যারামিটার ছাড়া বেস লিঙ্ক)
+    const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
+
+    // ২. URL থেকে প্যারামিটার ধরা
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageType = urlParams.get('p') || 'label'; 
+
+    // ৩. URLSearchParams ব্যবহার করে সঠিক লিঙ্ক তৈরি করা
+    const finalUrl = new URL(scriptBaseUrl);
+    finalUrl.searchParams.set('p', pageType);
+
+    // রাউট কন্ডিশন
+    if (pageType === 'home') {
+      finalUrl.searchParams.set('route', 'home');
+    } else if (pageType === 'track') {
+      finalUrl.searchParams.set('route', 'track');
+    } else if (pageType === 'rate') {
+      finalUrl.searchParams.set('route', 'rate');
+    }
+
+    // ৪. আইফ্রেমে লিঙ্ক পাঠিয়ে দেওয়া
+    iframe.src = finalUrl.toString();
+
+    // Smooth Transition Logic
+    iframe.onload = function() {
+      statusText.innerText = "Syncing with Server...";
+      setTimeout(() => {
+        iframe.classList.add('loaded');
+        loader.classList.add('hidden');
+      }, 600);
+    };
+
+    // Network Check
+    window.addEventListener('offline', () => {
+      statusText.innerText = "Offline - Check Connection";
+      statusText.style.color = "#ff4757";
+    });
+
+    window.addEventListener('online', () => {
+      statusText.innerText = "Reconnecting...";
+      statusText.style.color = "var(--primary)";
+    });
+
+    // Fallback Timer
+    setTimeout(() => {
+      if (!iframe.classList.contains('loaded')) {
+        iframe.classList.add('loaded');
+        loader.classList.add('hidden');
+      }
+    }, 12000);
+
+    // iOS Scale Fix
+    document.addEventListener('touchmove', function (e) {
+      if (e.scale !== 1) { e.preventDefault(); }
+    }, { passive: false });
+  </script>
+
 </body>
 </html>
