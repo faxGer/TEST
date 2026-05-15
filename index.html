@@ -130,28 +130,12 @@
     const loader = document.getElementById('loader');
     const statusText = document.getElementById('status-text');
 
-    // ১. আপনার মূল অ্যাপ স্ক্রিপ্ট লিঙ্ক (প্যারামিটার ছাড়া বেস লিঙ্ক)
+    // 1. Base URL for Google Apps Script Web App
     const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
 
-    // ২. URL থেকে প্যারামিটার ধরা
-    const urlParams = new URLSearchParams(window.location.search);
-    const pageType = urlParams.get('p') || 'label'; 
-
-    // ৩. URLSearchParams ব্যবহার করে সঠিক লিঙ্ক তৈরি করা
-    const finalUrl = new URL(scriptBaseUrl);
-    finalUrl.searchParams.set('p', pageType);
-
-    // রাউট কন্ডিশন
-    if (pageType === 'home') {
-      finalUrl.searchParams.set('route', 'home');
-    } else if (pageType === 'track') {
-      finalUrl.searchParams.set('route', 'track');
-    } else if (pageType === 'rate') {
-      finalUrl.searchParams.set('route', 'rate');
-    }
-
-    // ৪. আইফ্রেমে লিঙ্ক পাঠিয়ে দেওয়া
-    iframe.src = finalUrl.toString();
+    // 2. Safely capture and append search parameters (like ?page=tracking) to the iframe
+    const currentParams = window.location.search;
+    iframe.src = scriptBaseUrl + currentParams;
 
     // Smooth Transition Logic
     iframe.onload = function() {
