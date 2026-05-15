@@ -6,7 +6,6 @@
   
   <!-- 
     SECTION 1: Performance & Network Preloading
-    Note: Preconnects and fetches resources early to decrease First Contentful Paint (FCP).
   -->
   <link rel="preconnect" href="https://script.google.com" crossorigin />
   <link rel="dns-prefetch" href="https://script.google.com" />
@@ -14,7 +13,6 @@
   
   <!-- 
     SECTION 2: Primary Meta Tags (Standard SEO)
-    Note: Clean, high-CTR optimized Title and Meta Description targeting competitive logistics terms.
   -->
   <title>FaxGer Global Logistics | International Shipping & Courier Solutions</title>
   <meta name="title" content="FaxGer Global Logistics | International Shipping & Courier Solutions">
@@ -24,7 +22,6 @@
 
   <!-- 
     SECTION 3: Optimized Meta Keywords (Categorized & High-Volume)
-    Note: Grouped into semantic clusters to rank for local, intent-based, and transactional queries.
   -->
   <meta name="keywords" content="
     [CORE BRAND & SERVICES]: FaxGer, FaxGer Global Logistics, Best courier service in Bangladesh, Fastest courier service in BD, Low cost courier service, International shipping solutions, Online shipping calculator Bangladesh, Weight-based courier rates in Bangladesh, Express delivery international Bangladesh, Cheap international shipping from BD, Global logistics solutions, Best international courier Dhaka, Door to door shipping, Cargo service in Bangladesh, Best logistic company for e-commerce BD, International courier home pickup service, Export courier service in Bangladesh, International courier discount offers, Online booking for international courier,
@@ -35,7 +32,6 @@
 
   <!-- 
     SECTION 4: Open Graph / Facebook Meta Tags
-    Note: Controls how the website appears when shared on Facebook, WhatsApp, LinkedIn, and Instagram.
   -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rate.faxger.com/">
@@ -47,7 +43,6 @@
 
   <!-- 
     SECTION 5: X / Twitter Meta Tags
-    Note: Ensures rich media presentation for card previews on Twitter/X feeds.
   -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://rate.faxger.com/">
@@ -61,7 +56,6 @@
 
   <!-- 
     SECTION 6: Structured Data / Schema Markup (JSON-LD)
-    Note: Gives Google Search explicit information about your logistics business to enable Rich Snippets.
   -->
   <script type="application/ld+json">
   {
@@ -191,10 +185,19 @@
   </div>
 
   <script>
-    // Executing URLs Immediately to maximize speed
+    // URL Builder Logic (Fixes the double "?" query parameter issue)
     (function() {
       const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec?p=label";
-      document.getElementById('main-app').src = scriptBaseUrl + window.location.search;
+      const browserSearch = window.location.search;
+      
+      let finalUrl = scriptBaseUrl;
+      if (browserSearch) {
+        // If the browser URL already has parameters, replace its "?" with "&" before appending
+        const cleanParams = browserSearch.startsWith('?') ? browserSearch.substring(1) : browserSearch;
+        finalUrl += "&" + cleanParams;
+      }
+      
+      document.getElementById('main-app').src = finalUrl;
     })();
 
     const iframe = document.getElementById('main-app');
@@ -237,5 +240,3 @@
 
 </body>
 </html>
-
-
