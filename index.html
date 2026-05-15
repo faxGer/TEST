@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   
+  <!-- Network Preloading for Faster Google Script Loading -->
+  <link rel="preconnect" href="https://script.google.com" crossorigin />
+  <link rel="dns-prefetch" href="https://script.google.com" />
+  
   <!-- Primary Meta Tags (SEO) -->
   <title>FaxGer Global Logistics | International Shipping Solutions</title>
   <meta name="title" content="FaxGer Global Logistics | International Shipping Solutions">
@@ -37,7 +41,7 @@
       --bg: #000c1d;
       --text: #ffffff;
       --loader-bg: #000c1d;
-      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -80,8 +84,9 @@
       border: 3px solid rgba(255, 0, 127, 0.1);
       border-top: 3px solid var(--primary);
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      animation: spin 0.7s linear infinite;
       box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+      will-change: transform; /* Hardware Acceleration for Smoother Performance */
     }
 
     .loading-status {
@@ -99,11 +104,12 @@
       content: ''; position: absolute;
       width: 300px; height: 300px;
       background: var(--primary);
-      filter: blur(100px); opacity: 0.15;
-      animation: pulse 3s infinite ease-in-out;
+      filter: blur(100px); opacity: 0.12;
+      animation: pulse 2.5s infinite ease-in-out;
+      will-change: transform, opacity;
     }
 
-    @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.2; transform: scale(1.3); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.08; transform: scale(1); } 50% { opacity: 0.15; transform: scale(1.2); } }
   </style>
 </head>
 <body>
@@ -126,16 +132,15 @@
   </div>
 
   <script>
+    // Executing URLs Immediately to maximize speed
+    (function() {
+      const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
+      document.getElementById('main-app').src = scriptBaseUrl + window.location.search;
+    })();
+
     const iframe = document.getElementById('main-app');
     const loader = document.getElementById('loader');
     const statusText = document.getElementById('status-text');
-
-    // 1. Base URL for Google Apps Script Web App
-    const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
-
-    // 2. Safely capture and append search parameters (like ?page=tracking) to the iframe
-    const currentParams = window.location.search;
-    iframe.src = scriptBaseUrl + currentParams;
 
     // Smooth Transition Logic
     iframe.onload = function() {
@@ -143,7 +148,7 @@
       setTimeout(() => {
         iframe.classList.add('loaded');
         loader.classList.add('hidden');
-      }, 600);
+      }, 400); // Reduced delay for faster perception
     };
 
     // Network Check
@@ -157,13 +162,13 @@
       statusText.style.color = "var(--primary)";
     });
 
-    // Fallback Timer
+    // Fallback Timer (Safety net)
     setTimeout(() => {
       if (!iframe.classList.contains('loaded')) {
         iframe.classList.add('loaded');
         loader.classList.add('hidden');
       }
-    }, 12000);
+    }, 10000);
 
     // iOS Scale Fix
     document.addEventListener('touchmove', function (e) {
