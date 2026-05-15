@@ -666,7 +666,7 @@
       const parentUrl = new URL(window.location.href);
       const targetUrl = new URL(scriptBaseUrl);
       
-      targetUrl.searchParams.set('p', 'label');
+      targetUrl.searchParams.set('p', 'home');
       
       parentUrl.searchParams.forEach((value, key) => {
         targetUrl.searchParams.set(key, value);
