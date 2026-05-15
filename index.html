@@ -624,17 +624,20 @@
     const iframe = document.getElementById('main-app');
     const loader = document.getElementById('loader');
     const statusText = document.getElementById('status-text');
-    let dynamicLoadTriggered = false;
+    let fallbackTimer = null;
 
     // 1. Structural Registrations (Pre-binding event patterns to prevent script race conditions)
     iframe.onload = function() {
-      if (dynamicLoadTriggered) {
-        statusText.innerText = "Syncing with Server...";
-        setTimeout(() => {
-          iframe.classList.add('loaded');
-          loader.classList.add('hidden');
-        }, 400);
+      // Clear the fallback safety timer since the network resolved successfully
+      if (fallbackTimer) {
+        clearTimeout(fallbackTimer);
       }
+      
+      statusText.innerText = "Syncing with Server...";
+      setTimeout(() => {
+        iframe.classList.add('loaded');
+        loader.classList.add('hidden');
+      }, 400);
     };
 
     window.addEventListener('offline', () => {
@@ -644,12 +647,14 @@
 
     window.addEventListener('online', () => {
       statusText.innerText = "Reconnecting...";
-      statusText.style.color = "var(--primary)";
+      // Fallback color if CSS variable fails to map directly via JS style properties
+      statusText.style.color = "var(--primary, #007bff)"; 
     });
 
-    // Safety Engine Network Drop Fallback
-    const fallbackTimer = setTimeout(() => {
+    // Safety Engine Network Drop Fallback (Kept as reference variable to clear it later)
+    fallbackTimer = setTimeout(() => {
       if (!iframe.classList.contains('loaded')) {
+        statusText.innerText = "Connection slow - loading cached view";
         iframe.classList.add('loaded');
         loader.classList.add('hidden');
       }
@@ -672,10 +677,10 @@
         targetUrl.searchParams.set(key, value);
       });
       
-      dynamicLoadTriggered = true;
-      iframe.src = targetUrl.toString(); // Executed safely after structural hooks are mounted
+      // Setting the source triggers iframe.onload reliably now without race conditions
+      iframe.src = targetUrl.toString(); 
     })();
-  </script>
+</script>
 
 </body>
 </html>
