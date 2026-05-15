@@ -12,6 +12,7 @@
   <link rel="dns-prefetch" href="https://script.google.com" />
   <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
   
   <!-- Structural Integrity & Master Canonical Engine (Prevents Index Bloat & Duplication) -->
   <link rel="canonical" href="https://www.faxger.com/" />
@@ -58,7 +59,7 @@
     SECTION 5: HIGH-ROI SEMANTIC, LSI & INTENT KEYWORDS ENGINE (Semrush Intent Analytics)
     Objective: Captures high-intent B2B and B2C commercial traffic patterns.
   ========================================================================== -->
-  <meta name="keywords" content="FaxGer, FaxGer Global Logistics, Best courier service in Bangladesh, Fastest courier service in BD, Low cost courier service, International shipping solutions, Online shipping calculator Bangladesh, Weight-based courier rates in Bangladesh, Express delivery international Bangladesh, Cheap international shipping from BD, Global logistics solutions, Best international courier Dhaka, Door to door shipping, Cargo service in Bangladesh, DHL Rates Bangladesh, FedEx Rates BD, UPS rates Dhaka, Aramex Bangladesh price list, Courier service Dhaka, Courier service in Uttara, Courier service near me, Send parcel from Bangladesh to USA UK Canada, Courier to UK from Bangladesh, Shipping cost to Canada from BD, Cheapest way to send parcel to Europe, Bangladesh to USA shipping charges, international document delivery Dhaka, air freight cargo Bangladesh, global courier booking online, B2B export shipping Dhaka, freight forwarding services Bangladesh, reliable parcel delivery Asia Pacific, international air freight rates Dhaka, commercial air cargo Bangladesh, global package tracking portal, hazardous goods shipping Dhaka, e-commerce cross-border logistics BD, breakbulk cargo agents Bangladesh, supply chain management software Dhaka, supply chain visibility, international trade compliance, customs clearance Dhaka, customs brokerage Bangladesh, container load shipping BD">
+  <meta name="keywords" content="FaxGer, FaxGer Global Logistics, Best courier service in Bangladesh, Fastest courier service in BD, Low cost courier service, International shipping solutions, Online shipping calculator Bangladesh, Weight-based courier rates in Bangladesh, Express delivery international Bangladesh, Cheap international shipping from BD, Global logistics solutions, Best international courier Dhaka, Door to door shipping, Cargo service in Bangladesh, DHL Rates Bangladesh, FedEx Rates BD, UPS rates Dhaka, Aramex Bangladesh price list, Courier service Dhaka, Courier service in Uttara, Courier service near me, Send parcel from Bangladesh to USA UK Canada, Courier to UK from Bangladesh, Shipping cost to Canada from BD, Cheapest way to send parcel to Europe, Bangladesh to USA shipping charges, international document delivery Dhaka, air freight cargo Bangladesh, global courier booking online, B2B export shipping Dhaka, freight forwarding services Bangladesh, reliable parcel delivery Asia Pacific, international air freight rates Dhaka, commercial air cargo Bangladesh, global package tracking portal, hazardous goods shipping Dhaka, e-commerce cross-border logistics BD, breakbulk cargo agents Bangladesh, supply chain management software Dhaka, supply chain visibility, international trade compliance, customs clearance Dhaka, customs brokerage Bangladesh, container load shipping BD, third party logistics BD, ocean freight forwarding Dhaka, cross dock logistics, LCL shipping Bangladesh, FCL container tracking, bonded warehouse Dhaka">
 
   <!-- ==========================================================================
     SECTION 6: CO-BRANDING, SECURITY & ENTERPRISE AUDIT DISCOVERY (Screaming Frog Proofing)
@@ -177,7 +178,9 @@
       --primary: #ff007f;
       --accent: #001d47;
       --bg: #000c1d;
+      --card-bg: #001533;
       --text: #ffffff;
+      --text-muted: #8fa0b5;
       --loader-bg: #000c1d;
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
@@ -187,17 +190,22 @@
     body, html {
       margin: 0; padding: 0;
       width: 100%; height: 100%;
-      height: 100dvh; overflow-y: auto;
       background-color: var(--bg);
       font-family: 'Inter', sans-serif;
       color: var(--text);
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
 
-    .app-wrapper {
+    /* Split-screen viewport protection */
+    .app-viewport {
       position: relative;
-      width: 100%; height: 100vh;
+      width: 100%;
+      height: 100vh;
       height: 100dvh;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
 
     #main-app {
@@ -252,59 +260,128 @@
     @keyframes pulse { 0%, 100% { opacity: 0.08; transform: scale(1); } 50% { opacity: 0.15; transform: scale(1.2); } }
 
     /* ==========================================================================
-       SEMANTIC CONTENT CLUSTER (Optimized for Bot Visibility & AI Scraping Engines)
-       Ensures that crawlers read semantic code structures without blocking UI layers.
+       ENTERPRISE SEO SEMANTIC CONTENT GRID (Visible, Crawlable, and UX Native)
        ========================================================================== */
-    .semantic-seo-payload {
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0, 0, 0, 0);
-      white-space: nowrap; border: 0;
-      z-index: 1;
+    .seo-rich-footer {
+      background: linear-gradient(180deg, var(--bg) 0%, #00060f 100%);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(255, 0, 127, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+
+    .seo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .seo-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 28px;
+      transition: var(--transition);
+    }
+
+    .seo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 0, 127, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Core Heading Styles designed for semantic weights */
+    h1.seo-main-title {
+      font-size: 2.5rem; font-weight: 800; line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 16px; text-transform: capitalize;
+    }
+
+    h2.seo-section-title {
+      font-size: 1.8rem; font-weight: 700; color: #ffffff;
+      margin-top: 40px; margin-bottom: 20px;
+      border-left: 4px solid var(--primary); padding-left: 15px;
+    }
+
+    h3.seo-pillar-title {
+      font-size: 1.35rem; font-weight: 600; color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    h4.seo-feature-title {
+      font-size: 1.15rem; font-weight: 600; color: #ffffff;
+      margin-top: 20px; margin-bottom: 10px;
+    }
+
+    h5.seo-compliance-title {
+      font-size: 1rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;
+    }
+
+    h6.seo-footprint-title {
+      font-size: 0.9rem; font-weight: 700; color: #ffffff;
+      margin-top: 25px; margin-bottom: 5px;
+    }
+
+    .seo-rich-footer p {
+      font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);
+      margin-bottom: 16px; white-space: normal;
+    }
+
+    .seo-tag-cloud {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+    }
+
+    .seo-tag {
+      background: rgba(255, 0, 127, 0.08);
+      border: 1px solid rgba(255, 0, 127, 0.2);
+      color: #ff52af; padding: 6px 12px;
+      border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    }
+
+    /* Technical Diagnostic Tools Table */
+    .tool-matrix-table {
+      width: 100%; border-collapse: collapse; margin-top: 25px;
+      background: #000914; border-radius: 8px; overflow: hidden;
+    }
+
+    .tool-matrix-table th, .tool-matrix-table td {
+      padding: 14px 18px; text-align: left; font-size: 0.9rem;
+    }
+
+    .tool-matrix-table th {
+      background: rgba(255, 0, 127, 0.1); color: #ffffff; font-weight: 700;
+    }
+
+    .tool-matrix-table td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-muted);
+    }
+
+    .tool-matrix-table tr:last-child td { border-bottom: none; }
+    
+    .tool-note {
+      font-size: 0.8rem; font-style: italic; color: #ffbc00; background: rgba(255, 188, 0, 0.05);
+      padding: 8px 12px; border-left: 3px solid #ffbc00; margin-top: 5px; border-radius: 0 4px 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      h1.seo-main-title { font-size: 2rem; }
+      h2.seo-section-title { font-size: 1.5rem; }
+      .seo-rich-footer { padding: 40px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ==========================================================================
-    SECTION 10: CRITICAL SEMANTIC HEADER & LSI CONTEXT TREE (Ahrefs Structural Rule)
-    Targeting: Search Generative Experience (SGE), Featured Snippets, and Voice Queries.
-    Execution: Machine-readable semantic architecture embedded safely within body stream.
-  ========================================================================= -->
-  <article class="semantic-seo-payload">
-    
-    <!-- H1: Core Transactional Target (Keyword Map: Brand + Core Utility + Origin Geo) -->
-    <h1>FaxGer Global Logistics: International Shipping & Courier Services from Bangladesh</h1>
-    <p>Welcome to FaxGer Global Logistics, your premier omnichannel shipping aggregator engine based out of Dhaka, Bangladesh. We provide instant rate computational diagnostics for exporting high-volume commercial air cargo, cross-border e-commerce parcels, and confidential legal documents worldwide.</p>
-
-    <!-- H2: Secondary Pillar Sections (Keyword Map: Top Global Multi-Carriers) -->
-    <h2>Compare Multi-Carrier Air Freight and Courier Rates Instantly</h2>
-    <p>FaxGer bridges the technological gap between commercial enterprise exporters in Bangladesh and premium international tier-1 cargo providers including DHL Express, FedEx Air Cargo, UPS Systems, and Aramex Networks.</p>
-
-    <!-- H3: Regional Destination Specific Nodes -->
-    <h3>Express Package and Parcel Delivery to USA, UK, Canada & Europe</h3>
-    <ul>
-      <li><strong>Shipping to United States:</strong> Secure cross-border door-to-door delivery frameworks for garment exporters and e-commerce merchants.</li>
-      <li><strong>UK Courier Access points:</strong> Direct air charter routes handling time-sensitive business parcels from Dhaka to London hubs.</li>
-      <li><strong>Canada Clearance Protocols:</strong> Weight-based cargo calculations optimizing supply chain expenditures.</li>
-    </ul>
-
-    <!-- H4: Value Proposition & Digital Tool Functions -->
-    <h4>Advanced Dynamic Weight-Based Rate Engine Calculations</h4>
-    <p>Our operational backend applies volumetric and gross physical weight algorithms to maximize savings. Say goodbye to manual tariff books; obtain programmatic shipping pricing variables immediately.</p>
-
-    <!-- H5: Compliance, Freight Forwarding & Specialized Handling Operations -->
-    <h5>Customs Clearance Documentation Brokerage & Hazardous Goods Management</h5>
-    <p>We process formal commercial custom declarations, tracking airway bills, and providing dynamic compliance updates for supply chain visibility structures.</p>
-
-    <!-- H6: Hyper-Local Footprints and Regional Base Operations -->
-    <h6>Logistics Hubs Coverage: Dhaka, Uttara, Chittagong, and Global Gateways</h6>
-    <p>Providing on-demand micro-fulfillment processing windows near local cargo terminals for optimized transit setups.</p>
-
-  </article>
-
-  <div class="app-wrapper">
+  <!-- App Main Viewport Block -->
+  <div class="app-viewport">
     <div class="loader-overlay" id="loader">
       <div class="spinner-box">
         <div class="spinner"></div>
@@ -318,8 +395,145 @@
       title="FaxGer Global Logistics Dashboard"
       allow="geolocation; camera; clipboard-write"
       loading="eager">
-     iframe>
+    </iframe>
   </div>
+
+  <!-- ==========================================================================
+    SECTION 10: ADVANCED OMNICHANNEL SEO LAYOUT & METRIC MONITORING TOOL MATRIX
+    Targeting: Deep Crawl Indexability, LLM Retrieval Context, and Semantic Node Maps.
+    ========================================================================== -->
+  <footer class="seo-rich-footer">
+    <div class="seo-container">
+      
+      <!-- H1 Core Context -->
+      <h1 class="seo-main-title">FaxGer Global Logistics: International Shipping & Courier Services from Bangladesh</h1>
+      <p>Welcome to FaxGer Global Logistics, the premier global cross-border supply chain engine based out of Dhaka, Bangladesh. We provide instant real-time transactional calculations, comprehensive freight forwarding architectures, and secure end-to-end global parcel distributions for high-intent B2B exporters, e-commerce networks, and corporate enterprise partners worldwide.</p>
+      
+      <!-- H2 Structural Segment -->
+      <h2 class="seo-section-title">Automated Multi-Carrier Aggregator & Global Air Cargo Systems</h2>
+      <p>FaxGer effectively removes the complexity of cross-border trade matching by deploying structural rate matrix integrations with tier-1 international parcel carriers. Avoid manual lookup charts and effortlessly access verified logistics pipelines.</p>
+
+      <div class="seo-grid">
+        
+        <!-- Column 1: H3 & H4 Architecture -->
+        <div class="seo-card">
+          <h3 class="seo-pillar-title">Express Logistics Pipelines to USA, UK, Canada & Europe</h3>
+          <p>We streamline air cargo operations from Bangladesh hubs directly into major destination systems, securing faster processing windows for commercial entities.</p>
+          
+          <h4 class="seo-feature-title">Bangladesh to USA Courier Routes</h4>
+          <p>Tailored workflows for ready-made garment (RMG) manufacturers and individual parcel senders utilizing integrated customs tracking pipelines.</p>
+
+          <h4 class="seo-feature-title">UK Cargo & Express Access Points</h4>
+          <p>Direct air freight schedules running directly from Hazrat Shahjalal International Airport (DAC) to major British distribution complexes.</p>
+        </div>
+
+        <!-- Column 2: H4 & H5 Architecture -->
+        <div class="seo-card">
+          <h3 class="seo-pillar-title">Computational Freight Rate Engines & Variable Volumetrics</h3>
+          <p>Our backend relies on precise physical and dimensional volumetric weight parameters to eliminate pricing guesswork and ensure optimized operations.</p>
+          
+          <h4 class="seo-feature-title">Weight-Based Cost Calibration</h4>
+          <p>Instantly evaluate gross weight versus dimensional space allocations to acquire budget-conscious international quotes dynamically.</p>
+
+          <h5 class="seo-compliance-title">International Trade Compliance</h5>
+          <p>Every calculation automatically maps across current global tariff regulations, standard documentation rules, and cross-border security expectations.</p>
+        </div>
+
+        <!-- Column 3: H5 & H6 Architecture -->
+        <div class="seo-card">
+          <h3 class="seo-pillar-title">Customs Clearance Brokerage & Bonded Solutions</h3>
+          <p>Navigating international customs checks requires precision. FaxGer handles all legal clearances, automated air waybill prints, and compliance validations seamlessly.</p>
+          
+          <h5 class="seo-compliance-title">Hazardous Goods Processing</h5>
+          <p>Fully compliant procedures for shipping sensitive commercial products, electronics with lithium cells, or dangerous cargo classifications securely.</p>
+
+          <h6 class="seo-footprint-title">Hyper-Local Distribution Matrix</h6>
+          <p>On-demand collection and consolidation centers across Dhaka, Uttara, Mirpur, Chittagong, and major industrial EPZ corridors.</p>
+        </div>
+
+      </div>
+
+      <!-- H2 Tool Matrix Segment -->
+      <h2 class="seo-section-title">Logistics Infrastructure Engine Technical Tool Audit Map</h2>
+      <p>Our platform architectural metrics are systematically optimized alongside the world's leading search optimization analytics engines to secure high visibility and structural safety profiles.</p>
+
+      <table class="tool-matrix-table">
+        <thead>
+          <tr>
+            <th>SEO Verification Suite</th>
+            <th>Operational Objective & Audit Alignment</th>
+            <th>Technical Target Configuration Metric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Semrush Analytics Suite</strong></td>
+            <td>Commercial Intent Optimization & Entity Search Placement</td>
+            <td>Captures high-volume transactional keyword flows for cross-border shipping.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="tool-note"><strong>Semrush Engine Note:</strong> Focuses tracking on localized search queries like "cheap international shipping from BD" to boost transaction conversion rates.</div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Ahrefs Crawler Engine</strong></td>
+            <td>Semantic Code Structure & Internal Value Distribution</td>
+            <td>Validates logical heading hierarchies (H1–H6) to build contextual authority maps.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="tool-note"><strong>Ahrefs Engine Note:</strong> Resolves standard iframe data crawling issues by providing structured, readable HTML content outside the app frame.</div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Google Lighthouse / PageSpeed</strong></td>
+            <td>Core Web Vitals & Real-User Load Diagnostics</td>
+            <td>Optimizes Interaction to Next Paint (INP) and achieves low Time to First Byte (TTFB).</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="tool-note"><strong>Lighthouse Engine Note:</strong> Employs aggressive resource pre-connections to accelerate cross-origin Google Apps Script delivery pipelines.</div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Screaming Frog SEO Spider</strong></td>
+            <td>Broken Asset Tracking & Structural Integrity Sweeps</td>
+            <td>Eliminates duplicate content risks through strict canonical engineering.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="tool-note"><strong>Screaming Frog Note:</strong> Guarantees clean 200 OK server routing loops across all dynamic tracking link variants.</div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Moz Local Matrix</strong></td>
+            <td>Hyper-Local Regional SEO & Map Pack Optimization</td>
+            <td>Injects explicit JSON-LD schema models coupled with strict ICBM geo-tag targets.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="tool-note"><strong>Moz Local Note:</strong> Drives organic visibility within regional map inquiries across Dhaka Division logistics zones.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Advanced Context LSI Target Tags Cloud -->
+      <div class="seo-tag-cloud">
+        <span class="seo-tag">DHL Rates Bangladesh</span>
+        <span class="seo-tag">FedEx Air Cargo BD</span>
+        <span class="seo-tag">UPS Dhaka Booking</span>
+        <span class="seo-tag">Aramex Price List Dhaka</span>
+        <span class="seo-tag">Express Courier to USA</span>
+        <span class="seo-tag">Air Freight Forwarder BD</span>
+        <span class="seo-tag">E-commerce Cross-Border Logistics</span>
+        <span class="seo-tag">Customs Clearance Agent Dhaka</span>
+        <span class="seo-tag">B2B Export Shipping Bangladesh</span>
+      </div>
+
+    </div>
+  </footer>
 
   <script>
     const iframe = document.getElementById('main-app');
