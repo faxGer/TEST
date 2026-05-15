@@ -708,10 +708,35 @@
     const loader = document.getElementById('loader');
     const statusText = document.getElementById('status-text');
     let fallbackTimer = null;
+    let explicitLoadInitiated = false;
 
-    // 1. Structural Registrations (Pre-binding event patterns to prevent script race conditions)
+    // আইফ্রেমের সিকিউরিটি পলিসি জাভাস্ক্রিপ্ট দিয়েই ডাইনামিকালি সেট করে দেওয়া হলো
+    iframe.setAttribute('sandbox', 'allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads');
+    iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write;');
+
+    // ১. টু-ওয়ে ক্রস-অরিজিন মেসেজিং ইঞ্জিন (আইফ্রেম থেকে ডাটা রিসিভ করার জন্য)
+    window.addEventListener('message', function(event) {
+      // নিরাপত্তা নিশ্চিত করতে শুধুমাত্র আপনার গুগল ম্যাক্রো ডোমেন থেকে আসা মেসেজ গ্রহণ করবে
+      if (!event.origin.startsWith('https://script.google.com')) return;
+      
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        
+        // উদাহরণ: গুগল স্ক্রিপ্ট যদি মেসেজ পাঠায় যে সে সফলভাবে সিঙ্ক হয়েছে
+        if (data.action === 'sync_complete') {
+          statusText.innerText = "Data Synced Safely";
+        }
+        // এখানে আপনার প্রয়োজন অনুযায়ী আরও কাস্টম অ্যাকশন হ্যান্ডেল করতে পারবেন
+      } catch (e) {
+        // মেসেজ ফরম্যাট নরমাল টেক্সট হলে এখানে হ্যান্ডেল হবে
+        console.log("Received raw iframe message:", event.data);
+      }
+    });
+
+    // ২. স্ট্রাকচারাল রেজিস্ট্রেশনস (আইফ্রেম লোড হ্যান্ডলার)
     iframe.onload = function() {
-      // Clear the fallback safety timer since the network resolved successfully
+      if (!explicitLoadInitiated) return;
+
       if (fallbackTimer) {
         clearTimeout(fallbackTimer);
       }
@@ -730,11 +755,10 @@
 
     window.addEventListener('online', () => {
       statusText.innerText = "Reconnecting...";
-      // Fallback color if CSS variable fails to map directly via JS style properties
       statusText.style.color = "var(--primary, #007bff)"; 
     });
 
-    // Safety Engine Network Drop Fallback (Kept as reference variable to clear it later)
+    // সেফটি ইঞ্জিন নেটওয়ার্ক ড্রপ ফলব্যাক
     fallbackTimer = setTimeout(() => {
       if (!iframe.classList.contains('loaded')) {
         statusText.innerText = "Connection slow - loading cached view";
@@ -743,24 +767,34 @@
       }
     }, 12000);
 
-    // Advanced iOS Webkit Scale Mitigation
+    // আইওএস (iOS) ওয়েবকিট স্কেল মিটিগেশন
     document.body.addEventListener('gesturestart', function (e) {
       e.preventDefault();
     });
 
-    // 2. Active Resolution Execution Phase
+    // ৩. একটিভ রেজোলিউশন এক্সিকিউশন ফেজ (ইউআরএল ফিল্টারিং)
     (function() {
       const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
       const parentUrl = new URL(window.location.href);
       const targetUrl = new URL(scriptBaseUrl);
       
+      // ছোট হাতের অক্ষরে অনুমোদিত প্যারামিটারগুলোর তালিকা
+      const allowedParams = ['p', 'route', 'id', 'user', 'token', 'action']; 
+      
+      // ডিফল্ট রুট সেটআপ
       targetUrl.searchParams.set('p', 'home');
       
+      // কেস-ইনসেন্সিটিভ উপায়ে প্যারামিটার ফিল্টার এবং ম্যাপ করা
       parentUrl.searchParams.forEach((value, key) => {
-        targetUrl.searchParams.set(key, value);
+        const lowerKey = key.toLowerCase();
+        if (allowedParams.includes(lowerKey)) {
+          // এটি অরিজিনাল কি (Key) বজায় রাখে যাতে গুগল স্ক্রিপ্ট ডাটা মিস না করে
+          targetUrl.searchParams.set(key, value); 
+        }
       });
       
-      // Setting the source triggers iframe.onload reliably now without race conditions
+      // লোড প্রসেস ট্রিগার
+      explicitLoadInitiated = true;
       iframe.src = targetUrl.toString(); 
     })();
 </script>
