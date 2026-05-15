@@ -6,19 +6,17 @@
   
   <!-- ==========================================================================
     SECTION 1: ADVANCED PERFORMANCE & SPEED PRELOADING (Recommended by Google PageSpeed)
-    Note: Reduces Time to First Byte (TTFB) and DNS lookup latencies for faster loading.
   ========================================================================== -->
   <link rel="preconnect" href="https://script.google.com" crossorigin />
   <link rel="dns-prefetch" href="https://script.google.com" />
   <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   
-  <!-- Master Canonical URL (Prevents duplicate content issues in Semrush & Ahrefs audits) -->
+  <!-- Master Canonical URL (Aligned across all distribution networks) -->
   <link rel="canonical" href="https://www.faxger.com/" />
   
   <!-- ==========================================================================
     SECTION 2: PRIMARY META TAGS & POWERFUL SEO ARCHITECTURE (Yoast & RankMath Rules)
-    Note: Title and Description are strictly within character limits to prevent Google SERP truncation.
   ========================================================================== -->
   <title>FaxGer Global Logistics | International Shipping & Courier Solutions</title>
   <meta name="title" content="FaxGer Global Logistics | International Shipping & Courier Solutions">
@@ -26,20 +24,18 @@
   <meta name="author" content="FaxGer IT Farm">
   <meta name="copyright" content="FaxGer Global Logistics">
   
-  <!-- Advanced Robot Control (Ensures maximum indexing potential and rich snippet snippets) -->
+  <!-- Advanced Robot Control -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, imageindex:yes">
   <meta name="bingbot" content="index, follow">
 
   <!-- ==========================================================================
     SECTION 3: HIGH-ROI SEMANTIC & LSI KEYWORDS (Curated based on Semrush & Ahrefs Data)
-    Note: Strategically structured from Brand -> High Intent -> Transactional Keywords.
   ========================================================================== -->
   <meta name="keywords" content="FaxGer, FaxGer Global Logistics, Best courier service in Bangladesh, Fastest courier service in BD, Low cost courier service, International shipping solutions, Online shipping calculator Bangladesh, Weight-based courier rates in Bangladesh, Express delivery international Bangladesh, Cheap international shipping from BD, Global logistics solutions, Best international courier Dhaka, Door to door shipping, Cargo service in Bangladesh, DHL Rates Bangladesh, FedEx Rates BD, UPS rates Dhaka, Aramex Bangladesh price list, Courier service Dhaka, Courier service in Uttara, Courier service near me, Send parcel from Bangladesh to USA UK Canada, Courier to UK from Bangladesh, Shipping cost to Canada from BD, Cheapest way to send parcel to Europe, Bangladesh to USA shipping charges, international document delivery Dhaka, air freight cargo Bangladesh">
 
   <!-- ==========================================================================
-    SECTION 4: OPEN GRAPH / FACEBOOK SOCIAL GRAPH META (Validated via Facebook Sharing Debugger)
-    Note: Optimizes the CTR (Click-Through Rate) when links are shared on Facebook, WhatsApp, and LinkedIn.
+    SECTION 4: OPEN GRAPH / FACEBOOK SOCIAL GRAPH META (Fixed Domain Mismatch)
   ========================================================================== -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.faxger.com/">
@@ -55,8 +51,7 @@
   <meta property="og:locale" content="en_US">
 
   <!-- ==========================================================================
-    SECTION 5: X / TWITTER CARDS SEO METRICS
-    Note: Forces Twitter/X to render a beautiful rich-media large card layout.
+    SECTION 5: X / TWITTER CARDS SEO METRICS (Fixed Domain Mismatch)
   ========================================================================== -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:domain" content="faxger.com">
@@ -70,8 +65,7 @@
   <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/13QoaBni9mY0tTYPkCodu4KSqe0syFkrZ">
 
   <!-- ==========================================================================
-    SECTION 6: MULTI-SCHEMA JSON-LD STRUCTURED DATA (Google Search Central Compliant)
-    Note: Combines LogisticsBusiness and Product/Service Schema to secure rich snippet stars and graphs in Google Search.
+    SECTION 6: MULTI-SCHEMA JSON-LD STRUCTURED DATA
   ========================================================================== -->
   <script type="application/ld+json">
   {
@@ -111,7 +105,7 @@
           "@type": "QuoteAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://rate.faxger.com/?weight={weight}"
+            "urlTemplate": "https://www.faxger.com/?weight={weight}"
           },
           "result": {
             "@type": "PriceSpecification",
@@ -211,7 +205,6 @@
       <div class="loading-status" id="status-text">FaxGer Initializing...</div>
     </div>
 
-    <!-- Smart Loading Optimization for Google App Script Web App Interaction -->
     <iframe
       id="main-app"
       title="FaxGer Global Logistics Dashboard"
@@ -226,7 +219,7 @@
     const statusText = document.getElementById('status-text');
     let dynamicLoadTriggered = false;
 
-    // Smooth Transition Event
+    // 1. All Listeners & Transition Logic Setup First
     iframe.onload = function() {
       if (dynamicLoadTriggered) {
         statusText.innerText = "Syncing with Server...";
@@ -237,7 +230,30 @@
       }
     };
 
-    // Safe URL Parameter Interception & Injection 
+    window.addEventListener('offline', () => {
+      statusText.innerText = "Offline - Check Connection";
+      statusText.style.color = "#ff4757";
+    });
+
+    window.addEventListener('online', () => {
+      statusText.innerText = "Reconnecting...";
+      statusText.style.color = "var(--primary)";
+    });
+
+    // Safety Fallback Timer
+    const fallbackTimer = setTimeout(() => {
+      if (!iframe.classList.contains('loaded')) {
+        iframe.classList.add('loaded');
+        loader.classList.add('hidden');
+      }
+    }, 12000);
+
+    // Advanced iOS Webkit Scale Mitigation
+    document.body.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
+    // 2. Execution Phase (Fires ONLY after all listeners are structurally registered)
     (function() {
       const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbzFo8ao4DvF92Qcx4lhieUV80MSi7T1feLt-2jCXQstXuIhsORv1IQ6jlfAKDQCX7jA/exec";
       const parentUrl = new URL(window.location.href);
@@ -250,32 +266,8 @@
       });
       
       dynamicLoadTriggered = true;
-      iframe.src = targetUrl.toString();
+      iframe.src = targetUrl.toString(); // Triggers the actual network request safely
     })();
-
-    // Network Resiliency Handlers
-    window.addEventListener('offline', () => {
-      statusText.innerText = "Offline - Check Connection";
-      statusText.style.color = "#ff4757";
-    });
-
-    window.addEventListener('online', () => {
-      statusText.innerText = "Reconnecting...";
-      statusText.style.color = "var(--primary)";
-    });
-
-    // Safety Fallback Timer
-    setTimeout(() => {
-      if (!iframe.classList.contains('loaded')) {
-        iframe.classList.add('loaded');
-        loader.classList.add('hidden');
-      }
-    }, 12000);
-
-    // Advanced iOS Webkit Scale Mitigation
-    document.body.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-    });
   </script>
 
 </body>
